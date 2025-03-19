@@ -3,6 +3,7 @@
 import { getUser } from '@/data';
 import * as jwt from 'jsonwebtoken'
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 export async function login({ userName, password }: { userName: string, password: string }) {
     const user = await getUser({ userName, password })
@@ -13,4 +14,5 @@ export async function login({ userName, password }: { userName: string, password
     var token = jwt.sign({ ...user }, "privateKey");
     const cookieStore = await cookies()
     cookieStore.set('token', token)
+    redirect('/dashboard')
 }
