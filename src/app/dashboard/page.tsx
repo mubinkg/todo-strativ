@@ -1,6 +1,6 @@
 import { getUserDetails } from "@/actions/auth"
 import AddQuestion from "@/components/add-question"
-import Questions from "@/components/questions"
+import Question from "@/components/question"
 import Signout from "@/components/signout"
 import { getQuestions, UserType } from "@/data"
 
@@ -18,9 +18,9 @@ export default async function page() {
             }
             <div className="mt-4">
                 <h1 className="font-bold text-lg">Question List</h1>
-                <div>
+                <div className="mt-4">
                     {
-                        questions.map(question => <Questions key={question.id} question={question} />)
+                        questions.map(question => <Question user={user} key={question.id} question={question} />)
                     }
                 </div>
             </div>
