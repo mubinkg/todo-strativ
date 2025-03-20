@@ -24,7 +24,7 @@ const Question = ({
           )}
         </div>
         {user.role === 'user' && (
-          <AddAnswer questionId={question.id as number} />
+          <AddAnswer questionId={question.id as number} user={user} />
         )}
         <div className="py-4">
           <h1 className="my-1">Answer List</h1>

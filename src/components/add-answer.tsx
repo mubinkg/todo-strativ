@@ -3,18 +3,18 @@
 import React, { useState } from 'react';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
-import { addAnswer } from '@/data';
+import { addAnswer, UserType } from '@/data';
 import { useRouter } from 'next/navigation';
 import { Label } from './ui/label';
 
-const AddAnswer = ({ questionId }: { questionId: number }) => {
+const AddAnswer = ({ questionId, user }: { questionId: number, user: UserType }) => {
   const [ans, setAns] = useState('');
   const router = useRouter();
   return (
     <form
       onSubmit={async e => {
         e.preventDefault();
-        await addAnswer({ questionId: questionId, ans });
+        await addAnswer({ questionId: questionId, ans, user });
         setAns('');
         router.refresh();
       }}

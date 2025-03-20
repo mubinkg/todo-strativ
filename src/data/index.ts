@@ -95,16 +95,18 @@ export async function deleteQuestion(questionId: number) {
 export async function addAnswer({
   questionId,
   ans,
+  user
 }: {
   questionId: number;
   ans: string;
+  user: UserType
 }) {
   questions = questions.map(question => {
     if (question.id === questionId) {
       question.answers?.push({
         id: question.answers.length + 1,
         answer: ans,
-        userName: 'user',
+        userName: user.userName,
       });
     }
     return question;
