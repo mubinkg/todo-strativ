@@ -7,14 +7,14 @@ import { addAnswer } from '@/data'
 import { useRouter } from 'next/navigation'
 import { Label } from './ui/label'
 
-const AddAnswer = () => {
+const AddAnswer = ({ questionId }: { questionId: number }) => {
     const [ans, setAns] = useState('')
     const router = useRouter()
     return (
         <form
             onSubmit={async (e) => {
                 e.preventDefault()
-                await addAnswer({ questionId: 1, ans })
+                await addAnswer({ questionId: questionId, ans })
                 setAns('')
                 router.refresh()
             }}

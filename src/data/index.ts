@@ -52,6 +52,7 @@ export async function getQuestions({ userName, role }: { userName: string, role:
 
 export async function addQuestion(question: QuestionType) {
     question.id = questions.length + 1
+    question.answers = []
     questions.push(question)
 }
 
