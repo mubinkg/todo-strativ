@@ -6,9 +6,9 @@ type Answer = {
 }
 
 export type QuestionType = {
-    id: number
+    id?: number
     question: string,
-    answers: Answer[]
+    answers?: Answer[]
 }
 
 export type UserType = {
@@ -39,10 +39,13 @@ const questions: QuestionType[] = [
 ]
 
 export async function getQuestions({ userName, role }: { userName: string, role: string }) {
+    console.log(userName, role);
+
     return questions
 }
 
 export async function addQuestion(question: QuestionType) {
+    question.id = questions.length + 1
     questions.push(question)
 }
 

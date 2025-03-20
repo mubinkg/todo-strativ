@@ -11,7 +11,7 @@ export async function login({ userName, password }: { userName: string, password
         success: false,
         message: 'Unauthorized!'
     })
-    var token = jwt.sign({ userName: user.userName, role: user.role }, "privateKey");
+    const token = jwt.sign({ userName: user.userName, role: user.role }, "privateKey");
     const cookieStore = await cookies()
     cookieStore.set('token', token)
     redirect('/dashboard')
@@ -26,6 +26,7 @@ export async function signOut() {
 export async function getUserDetails() {
     const cookieStore = await cookies()
     const token = cookieStore.get('token')?.value
+    /* eslint-disable  @typescript-eslint/no-explicit-any */
     const data: any = jwt.verify(token ? token : "", 'privateKey')
     const user: UserType = { userName: data?.userName, role: data?.role }
     return user
