@@ -1,6 +1,6 @@
 'use server'
 
-type Answer = {
+export type Answer = {
     id: number,
     userName: string,
     answer: string
@@ -56,8 +56,19 @@ export async function addQuestion(question: QuestionType) {
     questions.push(question)
 }
 
-export async function deleteQuestion() {
+export async function updateQuestionData(questionId: number, updatedQuestion: string) {
+    console.log(questionId, updatedQuestion)
+    console.log(questions)
+    questions = questions.map(question => {
+        if (question.id === questionId) {
+            question.question = updatedQuestion
+        }
+        return question
+    })
+}
 
+export async function deleteQuestion(questionId: number) {
+    questions = questions.filter(question => question.id !== questionId)
 }
 
 export async function addAnswer({ questionId, ans }: { questionId: number, ans: string }) {
@@ -70,6 +81,20 @@ export async function addAnswer({ questionId, ans }: { questionId: number, ans: 
             })
         }
         return question
+    })
+}
+
+export async function updateAnswerData({ questionId, answerId, updatedAnswer }: { questionId: number, answerId: number, updatedAnswer: string }) {
+    questions = questions.map(qustion => {
+        if (qustion.id === questionId) {
+            qustion.answers = qustion.answers?.map(answer => {
+                if (answer.id === answerId) {
+                    answer.answer = updatedAnswer
+                }
+                return answer
+            })
+        }
+        return qustion
     })
 }
 

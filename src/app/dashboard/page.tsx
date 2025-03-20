@@ -18,7 +18,7 @@ export default async function page() {
             }
             <div className="mt-4">
                 <h1 className="font-bold text-lg">Question List</h1>
-                <div className="mt-4">
+                <div className="mt-4 flex flex-col gap-4">
                     {
                         questions.map(question => <Question user={user} key={question.id} question={question} />)
                     }
